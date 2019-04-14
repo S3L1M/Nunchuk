@@ -15,8 +15,7 @@ class nunchuk:
   def read(self):
     self.bus.write_byte(0x52,0x00)
     time.sleep(self.delay)
-    temp = [self.bus.read_byte(0x52) for i in range(6)]
-    return temp
+    return [self.bus.read_byte(0x52) for i in range(6)]
 
   def getData(self):
     data = self.read()
