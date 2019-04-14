@@ -16,9 +16,13 @@ class nunchuk:
     self.bus.write_byte(0x52,0x00)
     time.sleep(self.delay)
     return [self.bus.read_byte(0x52) for i in range(6)]
-
+  
+  def test(self):
+    self.bus.write_byte(0x52,0x00)
+    return self.bus.read_block_data(0x52)
+  
   def getData(self):
-    data = self.read()
+    local = self.read()
     return { 
       "accel": (data[2], data[3], data[4]),
       "btn":   ((data[5]&0x02)!=2, (data[5]&0x01)!=1),
@@ -26,5 +30,5 @@ class nunchuk:
     }
 
 
+  
 ### FOR_FUTURE: ADD def AsyncDataListen()
-
