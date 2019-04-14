@@ -9,3 +9,5 @@ x = nunchuck()
 while True:
   print x.getData()
 ```
+
+** You can specify the delay between readings in nunchuk constructor `x = nunchuk(delay)`
