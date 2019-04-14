@@ -19,7 +19,7 @@ class nunchuk:
   
   def test(self):
     self.bus.write_byte(0x52,0x00)
-    return self.bus.read_block_data(0x52)
+    return self.bus.read_block_data(0x52,0x00)
   
   def getData(self):
     data = self.read()
