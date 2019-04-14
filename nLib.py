@@ -20,7 +20,7 @@ class nunchuk:
   def getData(self):
     d = self.read()
     return {
-      "accel": (d[2]+d[6]>>2&3, d[3]+d[6]>>2&3, d[4]+d[6]>>6),
+      "accel": (d[2]+d[5]>>2&3, d[3]+d[5]>>2&3, d[4]+d[5]>>6),
       "btn":   (d[5]&2!=2, d[5]&1!=1),
       "joystk":(d[0],d[1])
     }
