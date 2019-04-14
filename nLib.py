@@ -16,17 +16,13 @@ class nunchuk:
     self.bus.write_byte(0x52,0x00)
     time.sleep(self.delay)
     return [self.bus.read_byte(0x52) for i in range(6)]
-  
-  def test(self):
-    self.bus.write_byte(0x52,0x00)
-    return self.bus.read_block_data(0x52,0x00)
-  
+
   def getData(self):
-    data = self.read()
-    return { 
-      "accel": (data[2], data[3], data[4]),
-      "btn":   ((data[5]&0x02)!=2, (data[5]&0x01)!=1),
-      "joystk": (data[0],data[1])
+    d = self.read()
+    return {
+      "accel": (d[2]+d[6]>>2&3, d[3]+d[6]>>2&3, d[4]+d[6]>>6),
+      "btn":   (d[5]&2!=2, d[5]&1!=1),
+      "joystk":(d[0],d[1])
     }
 
 
