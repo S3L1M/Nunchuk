@@ -3,7 +3,7 @@ import RPi.GPIO as rpi
 import time
 
 class nunchuk:
-  def __init__(self,delay = 0.05):
+  def __init__(self,delay = 0.001):
     self.delay = delay
     self.bus = SMBus(1)
     self.bus.write_byte_data(0x52,0xF0,0x55)
@@ -27,8 +27,14 @@ class nunchuk:
 
   def getData(self):
     local = self.read()
+    x = local[2]+(local[5]>>2&3)
+    y = local[3]+(local[5]>>2&3)
+    z = local[4]+(local[5]>>6)
+    x = x-128 if x>127 else x*-1
+    y = y-128 if x>127 else x*-1
+    z = z-128 if x>127 else x*-1
     return {
-      "accel": self.extractAccelData(local),
+      "accel": (x, y, z),
       "btn":   (local[5]&2!=2, local[5]&1!=1),
       "joystk":(local[0],local[1])
     }
