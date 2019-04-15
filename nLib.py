@@ -16,7 +16,7 @@ class nunchuk:
     time.sleep(self.delay)
     return [self.bus.read_byte(0x52) for i in range(6)]
 
-  def extractAccelData(data):
+  def extractAccelData(self, data):
     x = data[2]+(d[5]>>2&3)
     y = data[3]+(d[5]>>2&3)
     z = data[4]+(d[5]>>6)
