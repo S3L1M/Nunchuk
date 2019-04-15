@@ -20,9 +20,9 @@ class nunchuk:
     x = data[2]+(d[5]>>2&3)
     y = data[3]+(d[5]>>2&3)
     z = data[4]+(d[5]>>6)
-    x>127? x=x-128 : x*=-1
-    y>127? y=y-128 : y*=-1
-    z>127? z=z-128 : z*=-1
+    x=x-128 if x>127 else x*=-1
+    y=y-128 if x>127 else y*=-1
+    z=z-128 if x>127 else z*=-1
     return (x, y, z)
 
   def getData(self):
