@@ -17,9 +17,9 @@ class nunchuk:
     return [self.bus.read_byte(0x52) for i in range(6)]
 
   def extractAccelData(self, data):
-    x = data[2]+(d[5]>>2&3)
-    y = data[3]+(d[5]>>2&3)
-    z = data[4]+(d[5]>>6)
+    x = data[2]+(data[5]>>2&3)
+    y = data[3]+(data[5]>>2&3)
+    z = data[4]+(data[5]>>6)
     x = x-128 if x>127 else x*-1
     y = y-128 if x>127 else x*-1
     z = z-128 if x>127 else x*-1
