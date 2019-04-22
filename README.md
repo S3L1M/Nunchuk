@@ -11,3 +11,7 @@ while True:
 ```
 
 ** You can specify the delay between readings in nunchuk constructor `x = nunchuk(delay)`
+
+
+### Dependencies
+- openpyxl
