@@ -38,7 +38,7 @@ class nunchuk:
   def selectSheet(self, path, sheetname):
     self.path = path
     self.wb = load_workbook(path)
-    self.ws = wb[sheetname]
+    self.ws = self.wb[sheetname]
 
   def appendToExcl(self, row):
     self.ws.append(row)
