@@ -1,6 +1,7 @@
 from smbus import SMBus
 import RPi.GPIO as rpi
 import time
+from openpyxl import load_workbook
 
 class nunchuk:
   def __init__(self,delay = 0.001):
@@ -22,6 +23,10 @@ class nunchuk:
     z = data[4]+(data[5]>>6)-128
     return (x, y, z)
 
+  def getAccelData(self):
+    local = self.read()
+    return self.extractAccelData(local)
+
   def getData(self):
     local = self.read()
     return {
@@ -30,6 +35,15 @@ class nunchuk:
       "joystk":(local[0],local[1])
     }
 
+  def selectSheet(path, sheetname):
+    self.path = path
+    self.ws = load_workbook(path)[sheetname]
 
-  
+  def appendToExcl(row):
+    self.ws.append(row)
+
+  def saveExcl():
+    self.ws.save(self.path)
+
+
 ### FOR_FUTURE: ADD def AsyncDataListen()
