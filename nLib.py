@@ -35,14 +35,14 @@ class nunchuk:
       "joystk":(local[0],local[1])
     }
 
-  def selectSheet(path, sheetname):
+  def selectSheet(self, path, sheetname):
     self.path = path
     self.ws = load_workbook(path)[sheetname]
 
-  def appendToExcl(row):
+  def appendToExcl(self, row):
     self.ws.append(row)
 
-  def saveExcl():
+  def saveExcl(self):
     self.ws.save(self.path)
 
 
