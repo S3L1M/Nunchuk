@@ -37,13 +37,14 @@ class nunchuk:
 
   def selectSheet(self, path, sheetname):
     self.path = path
-    self.ws = load_workbook(path)[sheetname]
+    self.wb = load_workbook(path)
+    self.ws = wb[sheetname]
 
   def appendToExcl(self, row):
     self.ws.append(row)
 
   def saveExcl(self):
-    self.ws.save(self.path)
+    self.wb.save(self.path)
 
 
 ### FOR_FUTURE: ADD def AsyncDataListen()
